@@ -11,7 +11,16 @@
 	</bean>
 
 	<bean id="myCoach" class="com.pioneerx1.springdemo.TrackCoach">
+		<!--  constructor injection only needs ref for fortuneService bean -->
 		<constructor-arg ref="myFortuneService" />
+	</bean>
+	
+	<bean id="myFootballCoach" class="com.pioneerx1.springdemo.FootballCoach">
+		<!--  setter injection, name is the actual name of property, also needs ref -->
+		<property name="fortuneService" ref="myFortuneService" />
+		<!--  inject literal values -->
+		<property name="emailAddress" value="bob@bestcoach.com" />
+		<property name="team" value="Hungry Hippos" />
 	</bean>
 
 </beans>
