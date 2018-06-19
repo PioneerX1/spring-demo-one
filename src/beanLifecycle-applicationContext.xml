@@ -6,9 +6,6 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-
-	<!-- load the properties file -->
-	<context:property-placeholder location="classpath:sport.properties"/>
 	
 
 	<!--  Beans Definitions -->
@@ -16,17 +13,10 @@
 	<bean id="myFortuneService" class="com.pioneerx1.springdemo.HappyFortuneServiceImpl">
 	</bean>
 
-	<bean id="myCoach" class="com.pioneerx1.springdemo.TrackCoach">
+	<bean id="myCoach" class="com.pioneerx1.springdemo.TrackCoach" 
+		init-method="doStartUp" destroy-method="doCleanUp">
 		<!--  constructor injection only needs ref for fortuneService bean -->
 		<constructor-arg ref="myFortuneService" />
-	</bean>
-	
-	<bean id="myFootballCoach" class="com.pioneerx1.springdemo.FootballCoach">
-		<!--  setter injection, name is the actual name of property, also needs ref -->
-		<property name="fortuneService" ref="myFortuneService" />
-		<!--  inject literal values -->
-		<property name="emailAddress" value="${foo.email}" />
-		<property name="team" value="${foo.team}" />
 	</bean>
 
 </beans>

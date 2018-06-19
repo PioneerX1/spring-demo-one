@@ -22,5 +22,15 @@ public class TrackCoach implements Coach {
 	public String getDailyFortune() {
 		return "Just do it: " + fortuneService.getFortune();
 	}
+	
+	// custom hook for spring init-method
+	public void doStartUp() {
+		System.out.println("TrackCoach: do my STARTUP stuff");
+	}
+	
+	// custom hook for spring destory-method
+	public void doCleanUp() {
+		System.out.println("TrackCoach: do my CLEANUP stuff");
+	}
 
 }
